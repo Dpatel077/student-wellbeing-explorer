@@ -1,0 +1,7 @@
+.sites-runtime/
+.env
+node_modules/
+work/
+*.log
+.DS_Store
+Thumbs.db
