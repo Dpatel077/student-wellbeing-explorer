@@ -28,5 +28,4 @@ A browser-based exploratory analytics dashboard for social media habits, academi
 | `scripts/serve.cjs` | Local preview server |
 | `tests/stats.test.cjs` | Calculation, parser, filtering, and chart checks |
 | `.github/workflows/pages.yml` | Test, build, and Pages deployment workflow |
-| `docs/` | Business problem document, project notes, and validation record |
 | `dist/` | Generated files ready for static hosting |
