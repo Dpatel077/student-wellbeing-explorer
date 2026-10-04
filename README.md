@@ -246,7 +246,7 @@ For example, the missing-data rule prevents the 85 blank GPA values from becomin
 
 Chart calculations use all eligible records. Very large scatter and strip displays may reduce the number of rendered points, as explained in the dashboard captions; this does not reduce the data used for the statistics. The supplied examples are below those display thresholds.
 
-The project uses plain JavaScript and the Node standard library, with no application dependencies to install. Its static design supports GitHub Pages deployment and browser-local CSV analysis. The existing 12 calculation/parser/chart tests passed during project validation; details and the limits of the checks are recorded in [docs/VALIDATION.md](docs/VALIDATION.md).
+The project uses plain JavaScript and the Node standard library, with no application dependencies to install. Its static design supports GitHub Pages deployment and browser-local CSV analysis.
 
 ## 7 Discussion and Practical Use
 
