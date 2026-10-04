@@ -3,6 +3,7 @@
   'use strict';
   const S = root.WellbeingStats;
   const palettes = {
+    cobalt: ['#435de3', '#9272cd', '#178c87', '#ce8634', '#b95278', '#578b36', '#427da7'],
     ocean: ['#168b88', '#d78333', '#6f73bb', '#c45e7d', '#648b36', '#3b88bd', '#9864ac'],
     accessible: ['#0072B2', '#E69F00', '#009E73', '#CC79A7', '#D55E00', '#56B4E9', '#8b8b24'],
     indigo: ['#6477dc', '#15a5a0', '#ed9860', '#b37fbe', '#7c9c55', '#ca647c', '#57a0c6']
@@ -23,7 +24,7 @@
   }
   function colors(o) { return palettes[o.palette] || palettes.ocean; }
   function base(o, height = 500) {
-    const bg = o.theme === 'dark' ? '#172b3c' : '#ffffff', fg = o.theme === 'dark' ? '#d8e5ef' : '#40576b', grid = o.theme === 'dark' ? '#30475b' : '#e4ebf0';
+    const bg = o.theme === 'dark' ? '#191e28' : '#ffffff', fg = o.theme === 'dark' ? '#d7e0f2' : '#526079', grid = o.theme === 'dark' ? '#30394c' : '#e2e7f0';
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 ${height}" role="img" aria-label="${escape(o.title)}"><title>${escape(o.title)}</title><style>text{font-family:Arial,sans-serif;font-size:14px;fill:${fg}}.grid{stroke:${grid}}.axis-title{font-weight:600;font-size:15px}.chart-title{font-weight:700;font-size:19px}.mark{transition:opacity .15s}.mark:hover{opacity:1;filter:brightness(1.1)}</style><rect width="980" height="${height}" fill="${bg}"/>${text(24, 30, o.title, 'class="chart-title"')}`;
   }
   function frame(xr, yr, xlab, ylab, o, height = 500, xTicks = true) {

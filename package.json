@@ -1,6 +1,6 @@
 {
   "name": "student-wellbeing-explorer",
-  "version": "2.0.0",
+  "version": "3.0.1",
   "private": true,
   "description": "An accessible, browser-based exploratory data analysis dashboard.",
   "engines": { "node": ">=22" },
