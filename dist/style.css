@@ -1,7 +1,7 @@
 /* Design tokens keep the light and dark workspaces consistent. */
-:root{font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16px;color-scheme:light;--bg:#f3f6fa;--surface:#fff;--surface-alt:#f8fafc;--text:#183147;--muted:#5f7284;--line:#dce5ed;--accent:#117e7b;--accent-soft:#e7f4f0;--sidebar:#102b42;--shadow:0 3px 16px #18314706;--focus:#d28b27;--input:#fff}
+:root{font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;font-size:16px;color-scheme:light;--dark-slate-grey:#335c67;--vanilla-custard:#fff3b0;--honey-bronze:#e09f3e;--brown-red:#9e2a2b;--night-bordeaux:#540b0e;--bg:var(--vanilla-custard);--surface:#fffdf5;--surface-alt:#fff7d4;--text:var(--night-bordeaux);--muted:var(--dark-slate-grey);--line:#ddcfa6;--accent:var(--dark-slate-grey);--accent-soft:#e7eeee;--sidebar:var(--dark-slate-grey);--shadow:0 5px 22px #540b0e09;--focus:var(--brown-red);--input:#fffdf5;--primary:var(--dark-slate-grey);--primary-hover:var(--night-bordeaux);--primary-text:var(--vanilla-custard);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#294b54;--sidebar-active:var(--vanilla-custard);--sidebar-active-text:var(--night-bordeaux)}
 
-:root[data-theme=dark]{color-scheme:dark;--bg:#0e202f;--surface:#172b3c;--surface-alt:#1d3346;--text:#e0ebf3;--muted:#a7bbcc;--line:#344b5d;--accent:#5cd7c5;--accent-soft:#21453f;--sidebar:#0a1a27;--shadow:none;--input:#152a3c}
+:root[data-theme=dark]{color-scheme:dark;--bg:#240f13;--surface:#35191f;--surface-alt:#47242a;--text:var(--vanilla-custard);--muted:#d7c7a3;--line:#70484a;--accent:var(--honey-bronze);--accent-soft:#503323;--sidebar:var(--night-bordeaux);--shadow:0 7px 25px #0002;--focus:var(--vanilla-custard);--input:#35191f;--primary:var(--honey-bronze);--primary-hover:var(--vanilla-custard);--primary-text:var(--night-bordeaux);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#712024;--sidebar-active:var(--honey-bronze);--sidebar-active-text:var(--night-bordeaux)}
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text)}
@@ -23,9 +23,9 @@ select{padding-right:24px}
 input[type=checkbox]{min-height:auto;accent-color:var(--accent);width:16px;height:16px;flex-shrink:0}
 input[type=range]{accent-color:var(--accent);width:100%;border:0;padding:5px 0;min-height:24px;background:transparent}
 input::placeholder{color:var(--muted);opacity:.85}
-.primary{background:var(--accent);border-color:var(--accent);color:white}
-.primary:hover{background:#116f6c;color:white}
-:root[data-theme=dark] .primary{color:#102b42}
+.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-text);box-shadow:0 4px 10px #540b0e15}
+.primary:hover{background:var(--primary-hover);border-color:var(--primary-hover);color:var(--primary-text)}
+:root[data-theme=dark] .primary{color:var(--primary-text)}
 .quiet{background:var(--surface);font-size:.875rem}
 .text-button{border:0;background:transparent;color:var(--accent);padding:3px 0;font-size:.875rem;font-weight:600}
 .text-button:hover{background:transparent;text-decoration:underline}
@@ -163,7 +163,7 @@ tbody th{font-weight:500}
 tbody tr:hover{background:var(--surface-alt)}
 td.number,th.number{text-align:right;font-variant-numeric:tabular-nums}
 .table-scroll::-webkit-scrollbar{height:8px}
-.table-scroll::-webkit-scrollbar-thumb{background:#8ea7ba;border-radius:5px}
+.table-scroll::-webkit-scrollbar-thumb{background:var(--honey-bronze);border-radius:5px}
 .raw-table{max-height:620px}
 .raw-table thead{position:sticky;top:0}
 .raw-table th{padding:0}
@@ -368,16 +368,23 @@ body{background:#fff}
 @media(max-width:650px){.chart-area::before{content:'Scroll sideways to explore the full chart';display:block;position:sticky;left:0;font-size:.6875rem;color:var(--muted);margin:4px 0 12px}
 }
 
-/* Explorer 3: an airy analytics workspace with cobalt accents and floating surfaces. */
-:root{font-family:'Segoe UI Variable Text','Segoe UI',Arial,sans-serif;--bg:#f5f7fb;--surface:#fff;--surface-alt:#f3f5fb;--text:#19233a;--muted:#64708a;--line:#e2e7f0;--accent:#435de3;--accent-soft:#edf0ff;--sidebar:#ffffff;--shadow:0 5px 22px #1f335309;--focus:#de9a32;--input:#fff}
+/* Explorer 3: an airy analytics workspace with the slate, custard, bronze and bordeaux palette. */
+:root{font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;font-size:16px;color-scheme:light;--dark-slate-grey:#335c67;--vanilla-custard:#fff3b0;--honey-bronze:#e09f3e;--brown-red:#9e2a2b;--night-bordeaux:#540b0e;--bg:var(--vanilla-custard);--surface:#fffdf5;--surface-alt:#fff7d4;--text:var(--night-bordeaux);--muted:var(--dark-slate-grey);--line:#ddcfa6;--accent:var(--dark-slate-grey);--accent-soft:#e7eeee;--sidebar:var(--dark-slate-grey);--shadow:0 5px 22px #540b0e09;--focus:var(--brown-red);--input:#fffdf5;--primary:var(--dark-slate-grey);--primary-hover:var(--night-bordeaux);--primary-text:var(--vanilla-custard);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#294b54;--sidebar-active:var(--vanilla-custard);--sidebar-active-text:var(--night-bordeaux)}
 
-:root[data-theme=dark]{--bg:#101319;--surface:#191e28;--surface-alt:#232a37;--text:#e9eef9;--muted:#a3b0c7;--line:#30394c;--accent:#9bafff;--accent-soft:#29314f;--sidebar:#151923;--shadow:0 7px 25px #0002;--input:#191e28}
+:root[data-theme=dark]{color-scheme:dark;--bg:#240f13;--surface:#35191f;--surface-alt:#47242a;--text:var(--vanilla-custard);--muted:#d7c7a3;--line:#70484a;--accent:var(--honey-bronze);--accent-soft:#503323;--sidebar:var(--night-bordeaux);--shadow:0 7px 25px #0002;--focus:var(--vanilla-custard);--input:#35191f;--primary:var(--honey-bronze);--primary-hover:var(--vanilla-custard);--primary-text:var(--night-bordeaux);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#712024;--sidebar-active:var(--honey-bronze);--sidebar-active-text:var(--night-bordeaux)}
 
 .sidebar{background:var(--sidebar);color:var(--text);border-right:1px solid var(--line)}
 .brand{color:var(--text)}
 .brand small,.nav-label,.sidebar footer,.version,.sidebar nav button{color:var(--muted)}
 .sidebar nav button:hover{background:var(--surface-alt);color:var(--text)}
 .sidebar nav button[aria-current=page]{background:var(--accent-soft);color:var(--accent);box-shadow:none}
+.sidebar{color:var(--sidebar-text);border-right-color:var(--sidebar)}
+.sidebar .brand,.sidebar .brand small,.sidebar .nav-label,.sidebar footer,.sidebar .version,.sidebar .course-label,.sidebar nav button,.sidebar .sidebar-link{color:var(--sidebar-text)}
+.sidebar nav button:hover{background:var(--sidebar-hover);color:var(--sidebar-text)}
+.sidebar nav button[aria-current=page]{background:var(--sidebar-active);color:var(--sidebar-active-text);box-shadow:inset 3px 0 var(--honey-bronze)}
+.sidebar .sidebar-source{background:var(--sidebar-hover);border-color:#ffffff30}
+.sidebar .sidebar-source>span,.sidebar .sidebar-source p,.sidebar .sidebar-source .text-button{color:var(--sidebar-text)}
+.sidebar .sidebar-source strong{color:var(--honey-bronze)}
 .panel,.metric,.filter-bar,.finding{border-radius:18px}
 .topbar{background:var(--bg);border-bottom:0}
 h1{font-weight:700;letter-spacing:-.035em}
@@ -386,9 +393,9 @@ h1{font-weight:700;letter-spacing:-.035em}
 /* Explicit cohort chips and real distribution previews complement the headline means. */
 button{border-radius:10px;transition:background .18s,border-color .18s,transform .18s}
 button:hover{border-color:var(--accent)}
-.primary{background:#435de3;border-color:#435de3;color:#fff;box-shadow:0 4px 10px #435de320}
-.primary:hover{background:#344bc4;color:#fff}
-:root[data-theme=dark] .primary{color:#fff}
+.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-text);box-shadow:0 4px 10px #540b0e15}
+.primary:hover{background:var(--primary-hover);border-color:var(--primary-hover);color:var(--primary-text)}
+:root[data-theme=dark] .primary{color:var(--primary-text)}
 .eyebrow{font-size:.75rem}
 .brand small{font-size:.6875rem}
 .nav-label{font-size:.6875rem}
@@ -426,9 +433,11 @@ h1{font-size:2rem}
 .metric-number strong{font-size:2rem;font-weight:700;letter-spacing:-.055em}
 .metric-number small{font-size:.75rem;color:var(--muted)}
 .metric-spark{display:block;width:100%;height:30px;margin:15px 0 10px;fill:var(--accent);opacity:.55}
-.metric-1 .metric-spark{fill:#8572dc}
-.metric-2 .metric-spark{fill:#249f92}
-.metric-3 .metric-spark{fill:#c58838}
+.metric-1 .metric-spark{fill:var(--brown-red)}
+.metric-2 .metric-spark{fill:var(--honey-bronze)}
+.metric-3 .metric-spark{fill:var(--night-bordeaux)}
+:root[data-theme=dark] .metric-1 .metric-spark{fill:var(--vanilla-custard)}
+:root[data-theme=dark] .metric-3 .metric-spark{fill:var(--honey-bronze)}
 .metric footer{font-size:.75rem}
 .panel-heading h2,.chart-panel h2{font-size:1.125rem}
 .chart-note,.finding p,.comparison-row span,.context-note p{font-size:.875rem}
@@ -436,7 +445,7 @@ h1{font-size:2rem}
 .comparison-row small{font-size:.75rem}
 .finding .quiet,.context-note .text-button{font-size:.8125rem}
 .research-card{padding:22px;border-radius:16px;box-shadow:var(--shadow)}
-.research-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px #1f335312}
+.research-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px #540b0e12}
 .research-card h3{font-size:.9375rem;max-width:100%}
 .research-card p{font-size:.8125rem}
 .research-card>span{font-size:.8125rem}

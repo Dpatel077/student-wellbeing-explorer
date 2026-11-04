@@ -4,7 +4,7 @@
   const S = WellbeingStats, C = WellbeingCharts, R = WellbeingSource, e = C.escape, n = (v, digits = 2) => S.isNumber(v) ? v.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits }) : '—';
   const $ = id => document.getElementById(id);
   const views = [['overview', 'Overview'], ['distribution', 'Distributions'], ['relationships', 'Relationships'], ['groups', 'Group comparison'], ['correlation', 'Correlations'], ['data', 'Data explorer'], ['methods', 'Methods & directory']];
-  const defaults = { view: 'overview', x: 'Daily_Usage_Hours', y: 'Academic_Performance_GPA', group: 'Primary_Platform', facet: '', chart: 'scatter', bins: 24, opacity: .3, pointSize: 2.5, palette: 'cobalt', theme: 'light', trend: true, grid: true, outliers: true, percent: false, sort: 'alpha', title: '', method: 'pearson', correlationKeys: [...S.numeric], filters: {} };
+  const defaults = { view: 'overview', x: 'Daily_Usage_Hours', y: 'Academic_Performance_GPA', group: 'Primary_Platform', facet: '', chart: 'scatter', bins: 24, opacity: .3, pointSize: 2.5, palette: 'harvest', theme: 'light', trend: true, grid: true, outliers: true, percent: false, sort: 'alpha', title: '', method: 'pearson', correlationKeys: [...S.numeric], filters: {} };
   let config = structuredClone(defaults), data = INITIAL_DATA, filename = 'Social_media_impact_on_life.csv', original = true, dataHash = window.DATA_META?.sha256 || 'unavailable', page = 0, query = '', sortKey = 'Student_ID', sortDirection = 1, lastMessage = '', focusChart = false, lastView = '';
   try { config.theme = localStorage.getItem('wellbeing-theme') === 'dark' ? 'dark' : 'light'; } catch {}
   const icons = {
@@ -109,7 +109,7 @@
       if (paired && both) fields += select('method', 'Summary correlation', ['pearson', 'spearman'], config.method, v => v === 'pearson' ? 'Pearson' : 'Spearman');
     }
     const rangeControl = (id, title, min, max, step) => `<label class="field range-control"><span>${title}<output>${config[id]}</output></span><input id="${id}" type="range" min="${min}" max="${max}" step="${step}" value="${config[id]}"></label>`;
-    let style = select('palette', 'Color palette', Object.keys(C.palettes), config.palette, v => ({ cobalt: 'Cobalt & violet', ocean: 'Ocean & amber', accessible: 'Colorblind-friendly', indigo: 'Indigo & teal' }[v]));
+    let style = select('palette', 'Color palette', Object.keys(C.palettes), config.palette, v => ({ harvest: 'Slate, custard & bronze', cobalt: 'Cobalt & violet', ocean: 'Ocean & amber', accessible: 'Colorblind-friendly', indigo: 'Indigo & teal' }[v]));
     if (['histogram', 'density', 'binned'].includes(config.chart)) style += rangeControl('bins', config.chart === 'density' ? 'Grid resolution (max 40)' : config.chart === 'binned' ? 'Bins (max 30)' : 'Histogram bins', 8, 60, 1);
     if (['scatter', 'strip'].includes(config.chart)) style += rangeControl('opacity', 'Point opacity', .1, 1, .05) + rangeControl('pointSize', 'Point size', 1, 6, .5);
     style += checkbox('grid', 'Show gridlines', config.grid);
@@ -239,7 +239,7 @@
       const extra = 72 + Math.ceil(groups.length / 3) * 26, height = box.height + extra;
       copy.setAttribute('viewBox', `0 0 ${box.width} ${height}`);
       copy.setAttribute('width', box.width); copy.setAttribute('height', height);
-      const ns = 'http://www.w3.org/2000/svg', bg = config.theme === 'dark' ? '#191e28' : '#ffffff', fg = config.theme === 'dark' ? '#d7e0f2' : '#526079';
+      const ns = 'http://www.w3.org/2000/svg', bg = config.theme === 'dark' ? '#35191f' : '#fffdf5', fg = config.theme === 'dark' ? '#fff3b0' : '#335c67';
       function mark(tag, attributes, value) { const el = document.createElementNS(ns, tag); Object.entries(attributes).forEach(([k, v]) => el.setAttribute(k, v)); if (value !== undefined) el.textContent = value; copy.append(el); }
       mark('rect', {x:0, y:box.height, width:box.width, height:extra, fill:bg});
       groups.forEach((g, j) => { const x = 24 + (j % 3) * (box.width - 48) / 3, y = box.height + 22 + Math.floor(j / 3) * 26; mark('rect', {x, y:y-10, width:11, height:11, rx:2, fill:colors[j % colors.length]}); mark('text', {x:x+18,y,fill:fg,'font-size':12,'font-family':'Segoe UI, sans-serif'}, g); });
