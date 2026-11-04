@@ -1,7 +1,7 @@
 /* Design tokens keep the light and dark workspaces consistent. */
-:root{font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;font-size:16px;color-scheme:light;--dark-slate-grey:#335c67;--vanilla-custard:#fff3b0;--honey-bronze:#e09f3e;--brown-red:#9e2a2b;--night-bordeaux:#540b0e;--bg:var(--vanilla-custard);--surface:#fffdf5;--surface-alt:#fff7d4;--text:var(--night-bordeaux);--muted:var(--dark-slate-grey);--line:#ddcfa6;--accent:var(--dark-slate-grey);--accent-soft:#e7eeee;--sidebar:var(--dark-slate-grey);--shadow:0 5px 22px #540b0e09;--focus:var(--brown-red);--input:#fffdf5;--primary:var(--dark-slate-grey);--primary-hover:var(--night-bordeaux);--primary-text:var(--vanilla-custard);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#294b54;--sidebar-active:var(--vanilla-custard);--sidebar-active-text:var(--night-bordeaux)}
+:root{font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;font-size:16px;color-scheme:light;--forest:#36564b;--ivory:#f3f0e6;--brass:#aa9670;--burgundy:#856569;--ink:#29352d;--bg:#f2f1e9;--surface:#fcfbf7;--surface-alt:#eeeee4;--text:var(--ink);--muted:#60695f;--line:#daddd2;--accent:var(--forest);--accent-soft:#e6ece5;--sidebar:#243b32;--shadow:0 3px 16px #243b3206;--focus:#806b42;--input:#fcfbf7;--primary:var(--forest);--primary-hover:#294438;--primary-text:var(--ivory);--sidebar-text:#e4e6dc;--sidebar-hover:#30473b;--sidebar-active:#384e42;--sidebar-active-text:#faf8f0}
 
-:root[data-theme=dark]{color-scheme:dark;--bg:#240f13;--surface:#35191f;--surface-alt:#47242a;--text:var(--vanilla-custard);--muted:#d7c7a3;--line:#70484a;--accent:var(--honey-bronze);--accent-soft:#503323;--sidebar:var(--night-bordeaux);--shadow:0 7px 25px #0002;--focus:var(--vanilla-custard);--input:#35191f;--primary:var(--honey-bronze);--primary-hover:var(--vanilla-custard);--primary-text:var(--night-bordeaux);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#712024;--sidebar-active:var(--honey-bronze);--sidebar-active-text:var(--night-bordeaux)}
+:root[data-theme=dark]{color-scheme:dark;--bg:#19201c;--surface:#222a25;--surface-alt:#2b352e;--text:#e5e7dd;--muted:#b1baad;--line:#3e4b43;--accent:#a9c1ae;--accent-soft:#33463a;--sidebar:#17271f;--shadow:none;--focus:#c3ad7a;--input:#222a25;--primary:#b5c5b0;--primary-hover:#d1dccb;--primary-text:#203128;--sidebar-text:#dce3d8;--sidebar-hover:#273e31;--sidebar-active:#334b3b;--sidebar-active-text:#faf8f0}
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text)}
@@ -23,7 +23,7 @@ select{padding-right:24px}
 input[type=checkbox]{min-height:auto;accent-color:var(--accent);width:16px;height:16px;flex-shrink:0}
 input[type=range]{accent-color:var(--accent);width:100%;border:0;padding:5px 0;min-height:24px;background:transparent}
 input::placeholder{color:var(--muted);opacity:.85}
-.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-text);box-shadow:0 4px 10px #540b0e15}
+.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-text);box-shadow:0 4px 10px #243b320c}
 .primary:hover{background:var(--primary-hover);border-color:var(--primary-hover);color:var(--primary-text)}
 :root[data-theme=dark] .primary{color:var(--primary-text)}
 .quiet{background:var(--surface);font-size:.875rem}
@@ -163,7 +163,7 @@ tbody th{font-weight:500}
 tbody tr:hover{background:var(--surface-alt)}
 td.number,th.number{text-align:right;font-variant-numeric:tabular-nums}
 .table-scroll::-webkit-scrollbar{height:8px}
-.table-scroll::-webkit-scrollbar-thumb{background:var(--honey-bronze);border-radius:5px}
+.table-scroll::-webkit-scrollbar-thumb{background:var(--brass);border-radius:5px}
 .raw-table{max-height:620px}
 .raw-table thead{position:sticky;top:0}
 .raw-table th{padding:0}
@@ -368,10 +368,10 @@ body{background:#fff}
 @media(max-width:650px){.chart-area::before{content:'Scroll sideways to explore the full chart';display:block;position:sticky;left:0;font-size:.6875rem;color:var(--muted);margin:4px 0 12px}
 }
 
-/* Explorer 3: an airy analytics workspace with the slate, custard, bronze and bordeaux palette. */
-:root{font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;font-size:16px;color-scheme:light;--dark-slate-grey:#335c67;--vanilla-custard:#fff3b0;--honey-bronze:#e09f3e;--brown-red:#9e2a2b;--night-bordeaux:#540b0e;--bg:var(--vanilla-custard);--surface:#fffdf5;--surface-alt:#fff7d4;--text:var(--night-bordeaux);--muted:var(--dark-slate-grey);--line:#ddcfa6;--accent:var(--dark-slate-grey);--accent-soft:#e7eeee;--sidebar:var(--dark-slate-grey);--shadow:0 5px 22px #540b0e09;--focus:var(--brown-red);--input:#fffdf5;--primary:var(--dark-slate-grey);--primary-hover:var(--night-bordeaux);--primary-text:var(--vanilla-custard);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#294b54;--sidebar-active:var(--vanilla-custard);--sidebar-active-text:var(--night-bordeaux)}
+/* Explorer 3: an airy analytics workspace with warm ivory surfaces, forest green and restrained brass details. */
+:root{font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;font-size:16px;color-scheme:light;--forest:#36564b;--ivory:#f3f0e6;--brass:#aa9670;--burgundy:#856569;--ink:#29352d;--bg:#f2f1e9;--surface:#fcfbf7;--surface-alt:#eeeee4;--text:var(--ink);--muted:#60695f;--line:#daddd2;--accent:var(--forest);--accent-soft:#e6ece5;--sidebar:#243b32;--shadow:0 3px 16px #243b3206;--focus:#806b42;--input:#fcfbf7;--primary:var(--forest);--primary-hover:#294438;--primary-text:var(--ivory);--sidebar-text:#e4e6dc;--sidebar-hover:#30473b;--sidebar-active:#384e42;--sidebar-active-text:#faf8f0}
 
-:root[data-theme=dark]{color-scheme:dark;--bg:#240f13;--surface:#35191f;--surface-alt:#47242a;--text:var(--vanilla-custard);--muted:#d7c7a3;--line:#70484a;--accent:var(--honey-bronze);--accent-soft:#503323;--sidebar:var(--night-bordeaux);--shadow:0 7px 25px #0002;--focus:var(--vanilla-custard);--input:#35191f;--primary:var(--honey-bronze);--primary-hover:var(--vanilla-custard);--primary-text:var(--night-bordeaux);--sidebar-text:var(--vanilla-custard);--sidebar-hover:#712024;--sidebar-active:var(--honey-bronze);--sidebar-active-text:var(--night-bordeaux)}
+:root[data-theme=dark]{color-scheme:dark;--bg:#19201c;--surface:#222a25;--surface-alt:#2b352e;--text:#e5e7dd;--muted:#b1baad;--line:#3e4b43;--accent:#a9c1ae;--accent-soft:#33463a;--sidebar:#17271f;--shadow:none;--focus:#c3ad7a;--input:#222a25;--primary:#b5c5b0;--primary-hover:#d1dccb;--primary-text:#203128;--sidebar-text:#dce3d8;--sidebar-hover:#273e31;--sidebar-active:#334b3b;--sidebar-active-text:#faf8f0}
 
 .sidebar{background:var(--sidebar);color:var(--text);border-right:1px solid var(--line)}
 .brand{color:var(--text)}
@@ -381,19 +381,19 @@ body{background:#fff}
 .sidebar{color:var(--sidebar-text);border-right-color:var(--sidebar)}
 .sidebar .brand,.sidebar .brand small,.sidebar .nav-label,.sidebar footer,.sidebar .version,.sidebar .course-label,.sidebar nav button,.sidebar .sidebar-link{color:var(--sidebar-text)}
 .sidebar nav button:hover{background:var(--sidebar-hover);color:var(--sidebar-text)}
-.sidebar nav button[aria-current=page]{background:var(--sidebar-active);color:var(--sidebar-active-text);box-shadow:inset 3px 0 var(--honey-bronze)}
-.sidebar .sidebar-source{background:var(--sidebar-hover);border-color:#ffffff30}
+.sidebar nav button[aria-current=page]{background:var(--sidebar-active);color:var(--sidebar-active-text);box-shadow:inset 3px 0 var(--brass)}
+.sidebar .sidebar-source{background:var(--sidebar-hover);border-color:#ffffff18}
 .sidebar .sidebar-source>span,.sidebar .sidebar-source p,.sidebar .sidebar-source .text-button{color:var(--sidebar-text)}
-.sidebar .sidebar-source strong{color:var(--honey-bronze)}
+.sidebar .sidebar-source strong{color:var(--sidebar-text)}
 .panel,.metric,.filter-bar,.finding{border-radius:18px}
 .topbar{background:var(--bg);border-bottom:0}
-h1{font-weight:700;letter-spacing:-.035em}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.025em;line-height:1.2}
 .sidebar nav button{border-radius:12px}
 
 /* Explicit cohort chips and real distribution previews complement the headline means. */
 button{border-radius:10px;transition:background .18s,border-color .18s,transform .18s}
 button:hover{border-color:var(--accent)}
-.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-text);box-shadow:0 4px 10px #540b0e15}
+.primary{background:var(--primary);border-color:var(--primary);color:var(--primary-text);box-shadow:0 4px 10px #243b320c}
 .primary:hover{background:var(--primary-hover);border-color:var(--primary-hover);color:var(--primary-text)}
 :root[data-theme=dark] .primary{color:var(--primary-text)}
 .eyebrow{font-size:.75rem}
@@ -433,11 +433,11 @@ h1{font-size:2rem}
 .metric-number strong{font-size:2rem;font-weight:700;letter-spacing:-.055em}
 .metric-number small{font-size:.75rem;color:var(--muted)}
 .metric-spark{display:block;width:100%;height:30px;margin:15px 0 10px;fill:var(--accent);opacity:.55}
-.metric-1 .metric-spark{fill:var(--brown-red)}
-.metric-2 .metric-spark{fill:var(--honey-bronze)}
-.metric-3 .metric-spark{fill:var(--night-bordeaux)}
-:root[data-theme=dark] .metric-1 .metric-spark{fill:var(--vanilla-custard)}
-:root[data-theme=dark] .metric-3 .metric-spark{fill:var(--honey-bronze)}
+.metric-1 .metric-spark{fill:#7c8780}
+.metric-2 .metric-spark{fill:var(--brass)}
+.metric-3 .metric-spark{fill:var(--burgundy)}
+:root[data-theme=dark] .metric-1 .metric-spark{fill:#adb5a7}
+:root[data-theme=dark] .metric-3 .metric-spark{fill:#c19da0}
 .metric footer{font-size:.75rem}
 .panel-heading h2,.chart-panel h2{font-size:1.125rem}
 .chart-note,.finding p,.comparison-row span,.context-note p{font-size:.875rem}
@@ -445,7 +445,7 @@ h1{font-size:2rem}
 .comparison-row small{font-size:.75rem}
 .finding .quiet,.context-note .text-button{font-size:.8125rem}
 .research-card{padding:22px;border-radius:16px;box-shadow:var(--shadow)}
-.research-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px #540b0e12}
+.research-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px #243b320c}
 .research-card h3{font-size:.9375rem;max-width:100%}
 .research-card p{font-size:.8125rem}
 .research-card>span{font-size:.8125rem}

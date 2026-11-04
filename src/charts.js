@@ -3,6 +3,7 @@
   'use strict';
   const S = root.WellbeingStats;
   const palettes = {
+    estate: ['#36564b', '#8b7448', '#7c8780', '#856569', '#586774', '#897c65', '#60645a'],
     harvest: ['#335c67', '#e09f3e', '#9e2a2b', '#540b0e', '#fff3b0', '#66858d', '#b8752b'],
     cobalt: ['#435de3', '#9272cd', '#178c87', '#ce8634', '#b95278', '#578b36', '#427da7'],
     ocean: ['#168b88', '#d78333', '#6f73bb', '#c45e7d', '#648b36', '#3b88bd', '#9864ac'],
@@ -23,10 +24,13 @@
     else if (pad) { const extra = (hi - lo) * .06; lo -= extra; hi += extra; }
     return [lo, hi];
   }
-  function colors(o) { return palettes[o.palette] || palettes.harvest; }
+  function colors(o) {
+    if (o.theme === 'dark' && (!palettes[o.palette] || o.palette === 'estate')) return ['#93b1a1', '#c3ad7a', '#adb5a7', '#c19da0', '#a0b0c1', '#b6a793', '#c0c3a7'];
+    return palettes[o.palette] || palettes.estate;
+  }
   function base(o, height = 500) {
-    const bg = o.theme === 'dark' ? '#35191f' : '#fffdf5', fg = o.theme === 'dark' ? '#fff3b0' : '#335c67', grid = o.theme === 'dark' ? '#70484a' : '#ddcfa6';
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 ${height}" role="img" aria-label="${escape(o.title)}"><title>${escape(o.title)}</title><style>text{font-family:Arial,sans-serif;font-size:14px;fill:${fg}}.grid{stroke:${grid}}.axis-title{font-weight:600;font-size:15px}.chart-title{font-weight:700;font-size:19px}.mark{transition:opacity .15s}.mark[fill]:not([fill=none]){stroke:${o.theme === 'dark' ? '#fff3b0' : '#540b0e'};stroke-width:.6;stroke-opacity:.35}.mark:hover{opacity:1;filter:brightness(1.1)}</style><rect width="980" height="${height}" fill="${bg}"/>${text(24, 30, o.title, 'class="chart-title"')}`;
+    const bg = o.theme === 'dark' ? '#222a25' : '#fcfbf7', fg = o.theme === 'dark' ? '#dce3d8' : '#536058', grid = o.theme === 'dark' ? '#3e4b43' : '#e3e3d9';
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 ${height}" role="img" aria-label="${escape(o.title)}"><title>${escape(o.title)}</title><style>text{font-family:Arial,sans-serif;font-size:14px;fill:${fg}}.grid{stroke:${grid}}.axis-title{font-weight:600;font-size:15px}.chart-title{font-weight:700;font-size:19px}.mark{transition:opacity .15s}.mark[fill]:not([fill=none]){stroke:${o.theme === 'dark' ? '#dce3d8' : '#29352d'};stroke-width:.6;stroke-opacity:.35}.mark:hover{opacity:1;filter:brightness(1.1)}</style><rect width="980" height="${height}" fill="${bg}"/>${text(24, 30, o.title, 'class="chart-title"')}`;
   }
   function frame(xr, yr, xlab, ylab, o, height = 500, xTicks = true) {
     const m = { l: 80, r: 32, t: 65, b: 70 }, w = 980 - m.l - m.r, h = height - m.t - m.b;
@@ -177,8 +181,8 @@
     keys.forEach((x, i) => {
       out += text(left - 15, top + i * cell + cell / 2 + 5, label(x), 'text-anchor="end"');
       keys.forEach((y, j) => {
-        const c = S.correlate(rows, x, y, o.method), r = c.r, color = r === null ? '#ddcfa6' : r >= 0 ? `rgb(${Math.round(255 - 204 * r)},${Math.round(243 - 151 * r)},${Math.round(176 - 73 * r)})` : `rgb(${Math.round(255 - 97 * -r)},${Math.round(243 - 201 * -r)},${Math.round(176 - 133 * -r)})`;
-        const channels = r === null ? null : color.match(/\d+/g), rgb = channels ? channels.map(Number) : [221, 207, 166];
+        const c = S.correlate(rows, x, y, o.method), r = c.r, color = r === null ? '#daddd2' : r >= 0 ? `rgb(${Math.round(244 - 190 * r)},${Math.round(241 - 155 * r)},${Math.round(233 - 158 * r)})` : `rgb(${Math.round(244 - 111 * -r)},${Math.round(241 - 140 * -r)},${Math.round(233 - 128 * -r)})`;
+        const channels = r === null ? null : color.match(/\d+/g), rgb = channels ? channels.map(Number) : [218, 221, 210];
         const luminance = rgb.map(v => { const c = v / 255; return c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
         out += `<rect x="${left + j * cell}" y="${top + i * cell}" width="${cell - 3}" height="${cell - 3}" rx="3" fill="${color}">${tooltip(`${label(x)} / ${label(y)}: ${o.method} r=${fmt(r, 3)}; n=${c.n}`)}</rect>` + text(left + j * cell + cell / 2, top + i * cell + cell / 2 + 5, r === null ? '—' : r.toFixed(2), `text-anchor="middle" style="fill:${luminance < .179 ? '#ffffff' : '#000000'};font-weight:600;pointer-events:none"`);
       });
@@ -187,5 +191,5 @@
     });
     return out + '</svg>';
   }
-  root.WellbeingCharts = { palettes, names, escape, fmt, label, axisLabel, range, legend, histogram, ecdf, bars, scatter, density, binned, categoryNumeric, categoricalPair, heatmap };
+  root.WellbeingCharts = { palettes, colors, names, escape, fmt, label, axisLabel, range, legend, histogram, ecdf, bars, scatter, density, binned, categoryNumeric, categoricalPair, heatmap };
 })(globalThis);
