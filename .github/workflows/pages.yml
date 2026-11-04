@@ -11,7 +11,8 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages-${{ github.ref }}
+  # A fresh group avoids the orphaned Pages run that GitHub cannot cancel.
+  group: pages-deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
