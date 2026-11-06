@@ -3,6 +3,7 @@
   'use strict';
   const S = root.WellbeingStats;
   const palettes = {
+    calm: ['#357f91', '#6e70a8', '#488b80', '#ac7940', '#9b6685', '#5e84ad', '#7d8260'],
     estate: ['#36564b', '#8b7448', '#7c8780', '#856569', '#586774', '#897c65', '#60645a'],
     harvest: ['#335c67', '#e09f3e', '#9e2a2b', '#540b0e', '#fff3b0', '#66858d', '#b8752b'],
     cobalt: ['#435de3', '#9272cd', '#178c87', '#ce8634', '#b95278', '#578b36', '#427da7'],
@@ -25,12 +26,13 @@
     return [lo, hi];
   }
   function colors(o) {
-    if (o.theme === 'dark' && (!palettes[o.palette] || o.palette === 'estate')) return ['#93b1a1', '#c3ad7a', '#adb5a7', '#c19da0', '#a0b0c1', '#b6a793', '#c0c3a7'];
-    return palettes[o.palette] || palettes.estate;
+    if (o.theme === 'dark' && (!palettes[o.palette] || o.palette === 'calm')) return ['#8ac6d6', '#b8afe1', '#88c2b4', '#dfb581', '#d9a1bf', '#9ebee3', '#c0c59b'];
+    if (o.theme === 'dark' && o.palette === 'estate') return ['#93b1a1', '#c3ad7a', '#adb5a7', '#c19da0', '#a0b0c1', '#b6a793', '#c0c3a7'];
+    return palettes[o.palette] || palettes.calm;
   }
   function base(o, height = 500) {
-    const bg = o.theme === 'dark' ? '#222a25' : '#fcfbf7', fg = o.theme === 'dark' ? '#dce3d8' : '#536058', grid = o.theme === 'dark' ? '#3e4b43' : '#e3e3d9';
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 ${height}" role="img" aria-label="${escape(o.title)}"><title>${escape(o.title)}</title><style>text{font-family:Arial,sans-serif;font-size:14px;fill:${fg}}.grid{stroke:${grid}}.axis-title{font-weight:600;font-size:15px}.chart-title{font-weight:700;font-size:19px}.mark{transition:opacity .15s}.mark[fill]:not([fill=none]){stroke:${o.theme === 'dark' ? '#dce3d8' : '#29352d'};stroke-width:.6;stroke-opacity:.35}.mark:hover{opacity:1;filter:brightness(1.1)}</style><rect width="980" height="${height}" fill="${bg}"/>${text(24, 30, o.title, 'class="chart-title"')}`;
+    const bg = o.theme === 'dark' ? '#203141' : '#fbfdff', fg = o.theme === 'dark' ? '#e1eaf3' : '#586c80', grid = o.theme === 'dark' ? '#3c5267' : '#d4dfea';
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 ${height}" role="img" aria-label="${escape(o.title)}"><title>${escape(o.title)}</title><style>text{font-family:Arial,sans-serif;font-size:14px;fill:${fg}}.grid{stroke:${grid}}.axis-title{font-weight:600;font-size:15px}.chart-title{font-weight:700;font-size:19px}.mark{transition:opacity .15s}.mark[fill]:not([fill=none]){stroke:${o.theme === 'dark' ? '#e1eaf3' : '#25384b'};stroke-width:.6;stroke-opacity:.35}.mark:hover{opacity:1;filter:brightness(1.1)}</style><rect width="980" height="${height}" fill="${bg}"/>${text(24, 30, o.title, 'class="chart-title"')}`;
   }
   function frame(xr, yr, xlab, ylab, o, height = 500, xTicks = true) {
     const m = { l: 80, r: 32, t: 65, b: 70 }, w = 980 - m.l - m.r, h = height - m.t - m.b;
@@ -177,12 +179,17 @@
   }
   function heatmap(rows, keys, o) {
     if (keys.length < 2) return empty('Select at least two numerical variables.');
-    const cell = Math.min(88, 700 / keys.length), left = 238, top = 68, height = Math.ceil(top + cell * keys.length + 196); let out = base(o, height);
+    const cell = Math.min(88, 700 / keys.length), left = 238, top = 98, height = Math.ceil(top + cell * keys.length + 196); let out = base(o, height);
+    const scale = [['#b87b53', 'Negative (-1)'], [o.theme === 'dark' ? '#293d50' : '#ecf2f7', 'Near zero (0)'], ['#357f91', 'Positive (+1)']];
+    scale.forEach(([color, caption], i) => { const x = 238 + i * 218; out += `<rect x="${x}" y="52" width="20" height="12" rx="3" fill="${color}"/>` + text(x + 29, 63, caption, 'style="font-size:13px"'); });
     keys.forEach((x, i) => {
       out += text(left - 15, top + i * cell + cell / 2 + 5, label(x), 'text-anchor="end"');
       keys.forEach((y, j) => {
-        const c = S.correlate(rows, x, y, o.method), r = c.r, color = r === null ? '#daddd2' : r >= 0 ? `rgb(${Math.round(244 - 190 * r)},${Math.round(241 - 155 * r)},${Math.round(233 - 158 * r)})` : `rgb(${Math.round(244 - 111 * -r)},${Math.round(241 - 140 * -r)},${Math.round(233 - 128 * -r)})`;
-        const channels = r === null ? null : color.match(/\d+/g), rgb = channels ? channels.map(Number) : [218, 221, 210];
+        const c = S.correlate(rows, x, y, o.method), r = c.r;
+        const neutral = o.theme === 'dark' ? [41, 61, 80] : [236, 242, 247];
+        const end = r >= 0 ? [53, 127, 145] : [184, 123, 83];
+        const rgb = r === null ? (o.theme === 'dark' ? [60, 82, 103] : [212, 223, 234]) : neutral.map((v, k) => Math.round(v + (end[k] - v) * Math.abs(r)));
+        const color = `rgb(${rgb.join(',')})`;
         const luminance = rgb.map(v => { const c = v / 255; return c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4; }).reduce((sum, v, i) => sum + v * [.2126, .7152, .0722][i], 0);
         out += `<rect x="${left + j * cell}" y="${top + i * cell}" width="${cell - 3}" height="${cell - 3}" rx="3" fill="${color}">${tooltip(`${label(x)} / ${label(y)}: ${o.method} r=${fmt(r, 3)}; n=${c.n}`)}</rect>` + text(left + j * cell + cell / 2, top + i * cell + cell / 2 + 5, r === null ? '—' : r.toFixed(2), `text-anchor="middle" style="fill:${luminance < .179 ? '#ffffff' : '#000000'};font-weight:600;pointer-events:none"`);
       });
